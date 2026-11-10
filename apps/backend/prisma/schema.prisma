@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum RaceType {
+  MARATHON
+  HALF_MARATHON
+  TRIATHLON_SPRINT
+  TRIATHLON_OLYMPIC
+  TRIATHLON_70_3
+  TRIATHLON_FULL
+}
+
+enum Discipline {
+  SWIM
+  BIKE
+  RUN
+}
+
+/// Race plan generated for a specific event.
+model RacePlan {
+  id                 String        @id @default(uuid())
+  name               String
+  raceType           RaceType
+  raceDate           DateTime?
+  expectedTempC      Float?
+  targetFinishTimeS  Int?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  segments           PlanSegment[]
+}
+
+/// Plan segment: a stretch of the course with its pace/power target and fueling.
+model PlanSegment {
+  id                 String     @id @default(uuid())
+  order              Int
+  discipline         Discipline
+  startKm            Float
+  endKm              Float
+  targetPaceSPerKm   Int?
+  targetPowerW       Int?
+  carbsG             Int?
+  fluidMl            Int?
+  notes              String?
+  racePlanId         String
+  racePlan           RacePlan   @relation(fields: [racePlanId], references: [id], onDelete: Cascade)
+
+  @@index([racePlanId])
+}

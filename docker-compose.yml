@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: race-planner-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: raceplanner
+      POSTGRES_PASSWORD: raceplanner
+      POSTGRES_DB: raceplanner
+    ports:
+      - '5432:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:

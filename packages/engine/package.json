@@ -1,0 +1,37 @@
+{
+  "name": "@race-planner/engine",
+  "version": "0.1.0",
+  "description": "Open source engine for race strategy planning: GPX parsing, grade-based segments, grade-adjusted pace and fueling.",
+  "license": "MIT",
+  "keywords": [
+    "gpx",
+    "running",
+    "triathlon",
+    "marathon",
+    "pacing",
+    "grade-adjusted-pace",
+    "nutrition"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.12.0"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

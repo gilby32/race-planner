@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+coverage/
+.env
+*.log
+.DS_Store
+
+# Expo
+.expo/
+web-build/
+ios/
+android/
+
+# Generated
+apps/backend/src/schema.gql
+apps/backend/src/generated/
